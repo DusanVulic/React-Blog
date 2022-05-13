@@ -1,0 +1,136 @@
+nav {
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+h2 {
+    color: #42a5f5;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    border-radius: 1.25px;
+    margin: 5px;
+    transition: all 0.3s linear;
+    background: #42a5f5;
+    display: block;
+    cursor: pointer;
+}
+
+
+/* menu hamburger to x button */
+
+.menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+
+/* end of  menu hamburger to x button */
+
+
+/* LINKS CONTAINER*/
+
+.links-container {
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s linear;
+}
+
+.show-container {
+    height: 10rem;
+}
+
+
+/* END OF LINKS CONTAINER*/
+
+.links li {
+    font-size: 20px;
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+}
+
+.user {
+    color: #42a5f5;
+}
+
+
+/*LOGOUT BUTTON */
+
+.btn {
+    background: #42a5f5;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    border-color: transparent;
+    text-transform: capitalize;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+
+/* .logout-btn {
+    font-size: 20px;
+    cursor: pointer;
+    background: transparent;
+    border: transparent;
+    color: blueviolet;
+    font-weight: 200;
+} */
+
+@media screen and (min-width: 800px) {
+    .nav-center {
+        max-width: 1170px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+    }
+    .nav-header {
+        padding: 0;
+    }
+    h2 {
+        color: #42a5f5;
+        margin-left: 20px;
+    }
+    .menu-toggle {
+        display: none;
+    }
+    .links-container {
+        height: auto !important;
+    }
+    .links {
+        display: flex;
+    }
+    .links li {
+        padding: 0;
+        margin: 0 0.5rem;
+    }
+    .links a:hover {
+        padding: 0;
+        background: transparent;
+    }
+}
