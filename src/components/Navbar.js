@@ -49,7 +49,7 @@ const Navbar = () => {
                   className="nav-link"
                   onClick={() => setShowLinks(false)}
                 >
-                  login
+                  Login
                 </Link>
               </li>
             </>
