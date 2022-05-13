@@ -5,15 +5,15 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Home = ({ isAuth }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!isAuth) {
-            navigate("/login");
-        }
-    });
+  useEffect(() => {
+    if (!isAuth) {
+      navigate("/login");
+    }
+  });
 
-    return <div > Home < /div>;
+  return <div> Home </div>;
 };
 
 export default Home;
