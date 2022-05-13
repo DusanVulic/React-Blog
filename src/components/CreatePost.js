@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //MUI components
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+
 //import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 
-const CreatePost = () => {
+import { addDoc, collection } from "firebase/firestore";
+import { db, auth } from "./../firebase/firebaseConfig";
+
+//navigate to home page
+
+import { useNavigate } from "react-router-dom";
+
+const CreatePost = ({ isAuth }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   const [titleError, setTitleError] = useState(false);
   const [contentError, setContentError] = useState(false);
 
-  const createBlogHandler = (e) => {
+  //firebase collection
+  const postsCollectionRef = collection(db, "blogs");
+  //navigate
+  const navigate = useNavigate();
+
+  const createBlogHandler = async (e) => {
     e.preventDefault();
     setTitleError(false);
     setContentError(false);
@@ -25,9 +38,22 @@ const CreatePost = () => {
     }
 
     console.log(title, content);
-    setTitle("");
-    setContent("");
+
+    await addDoc(postsCollectionRef, {
+      title,
+      content,
+      author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+    });
+    navigate("/");
+    //setTitle("");
+    //setContent("");
   };
+
+  useEffect(() => {
+    if (!isAuth) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <>

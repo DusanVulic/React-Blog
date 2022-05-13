@@ -15,8 +15,8 @@ function App() {
     <Router>
       <Navbar isAuth={isAuth} setIsAuth={setIsAuth} />
       <Routes>
-        {isAuth && <Route path="/" element={<Home />} />}
-        <Route path="/create" element={<CreatePost />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/create" element={<CreatePost isAuth={isAuth} />} />
         {!isAuth && (
           <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
         )}
