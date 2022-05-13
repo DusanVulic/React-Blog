@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "./../firebase/firebaseConfig";
 
-//navigate to home page
+//navigate to home page or redirect to login
 
 import { useNavigate } from "react-router-dom";
 
@@ -53,6 +53,7 @@ const CreatePost = ({ isAuth }) => {
     if (!isAuth) {
       navigate("/login");
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
