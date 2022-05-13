@@ -5,7 +5,16 @@ import "./Navbar.css";
 //import links data
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+/// logout function
+
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig";
+
+//redirection
+
+import { useNavigate } from "react-router-dom";
+
+const Navbar = ({ isAuth, setIsAuth }) => {
   const [showLinks, setShowLinks] = useState(false);
 
   const linksContainerRef = useRef(null);
@@ -14,6 +23,9 @@ const Navbar = () => {
   const showLinksHandler = () => {
     setShowLinks(!showLinks);
   };
+
+  //create navigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     const linksHeight = linksRef.current.getBoundingClientRect().height;
@@ -24,6 +36,16 @@ const Navbar = () => {
       linksContainerRef.current.style.height = "0px";
     }
   }, [showLinks]);
+
+  // sign out user
+
+  const signUserOut = () => {
+    signOut(auth).then(() => {
+      localStorage.clear();
+      setIsAuth(false);
+      navigate("/login");
+    });
+  };
 
   return (
     <nav>
@@ -44,45 +66,50 @@ const Navbar = () => {
           <ul className="links" ref={linksRef}>
             <>
               <li>
-                <Link
-                  to="/login"
-                  className="nav-link"
-                  onClick={() => setShowLinks(false)}
-                >
-                  Login
-                </Link>
+                {!isAuth ? (
+                  <Link
+                    to="/login"
+                    className="nav-link"
+                    onClick={() => setShowLinks(false)}
+                  >
+                    Login
+                  </Link>
+                ) : (
+                  <button
+                    className="btn"
+                    onClick={() => {
+                      setShowLinks(false);
+                      signUserOut();
+                    }}
+                  >
+                    Logout
+                  </button>
+                )}
               </li>
             </>
             <>
               <li>
-                <Link
-                  to="/"
-                  className="nav-link"
-                  onClick={() => setShowLinks(false)}
-                >
-                  Home
-                </Link>
+                {isAuth && (
+                  <Link
+                    to="/"
+                    className="nav-link"
+                    onClick={() => setShowLinks(false)}
+                  >
+                    Home
+                  </Link>
+                )}
               </li>
 
               <li>
-                <Link
-                  to="/create"
-                  className="nav-link"
-                  onClick={() => setShowLinks(false)}
-                >
-                  Create Blog
-                </Link>
-              </li>
-
-              <li>
-                <button
-                  className="btn"
-                  onClick={() => {
-                    setShowLinks(false);
-                  }}
-                >
-                  Logout
-                </button>
+                {isAuth && (
+                  <Link
+                    to="/create"
+                    className="nav-link"
+                    onClick={() => setShowLinks(false)}
+                  >
+                    Create Blog
+                  </Link>
+                )}
               </li>
             </>
           </ul>
