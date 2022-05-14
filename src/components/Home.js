@@ -36,6 +36,7 @@ const Home = ({ isAuth }) => {
 
   useEffect(() => {
     getBlogs();
+    // eslint-disable-next-line
   }, [blogs]);
 
   //delete Blog
