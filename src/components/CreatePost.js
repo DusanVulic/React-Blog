@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-//import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "./../firebase/firebaseConfig";
@@ -89,7 +89,7 @@ const CreatePost = ({ isAuth }) => {
           <Button
             variant="contained"
             type="submit"
-            //endIcon={<ArrowForwardIosRoundedIcon />}
+            endIcon={<ArrowForwardIosRoundedIcon />}
           >
             create blog
           </Button>
