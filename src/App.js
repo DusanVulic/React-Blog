@@ -15,8 +15,12 @@ import { useState } from "react";
 
 //window.location.pathname = "/login";
 
+const loggedUserAuth = () => {
+  return localStorage.getItem("isAuth");
+};
+
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(loggedUserAuth());
 
   return (
     <Router>
